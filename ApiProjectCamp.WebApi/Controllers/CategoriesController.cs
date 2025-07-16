@@ -17,7 +17,7 @@ namespace ApiProjectCamp.WebApi.Controllers
         }
 
         [HttpGet]
-        public IActionResult CategoryList()
+        public IActionResult GetAllCategory()
         {
             var values = _context.Categories.ToList();
             return Ok(values);
