@@ -14,10 +14,10 @@ namespace ApiProjectCamp.WebApi.Mapping
             CreateMap<Feature,UpdateFeatureDto>().ReverseMap();
             CreateMap<Feature,CreateFeatureDto>().ReverseMap();
 
-            CreateMap<Feature, ResultMessageDto>().ReverseMap();
-            CreateMap<Feature, GetByIdMessageDto>().ReverseMap();
-            CreateMap<Feature, UpdateMessageDto>().ReverseMap();
-            CreateMap<Feature, CreateMessageDto>().ReverseMap();
+            CreateMap<Message, ResultMessageDto>().ReverseMap();
+            CreateMap<Message, GetByIdMessageDto>().ReverseMap();
+            CreateMap<Message, UpdateMessageDto>().ReverseMap();
+            CreateMap<Message, CreateMessageDto>().ReverseMap();
         }
     }
 }
