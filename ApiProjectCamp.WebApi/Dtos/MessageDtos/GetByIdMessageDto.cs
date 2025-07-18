@@ -1,7 +1,8 @@
 ﻿namespace ApiProjectCamp.WebApi.Dtos.MessageDtos
 {
     public class GetByIdMessageDto
-    {public int MessageId { get; set; }
+    {
+        public int MessageId { get; set; }
         public string MessageNameSurname { get; set; }
         public string MessageEmail { get; set; }
         public string MessageSubject { get; set; }
