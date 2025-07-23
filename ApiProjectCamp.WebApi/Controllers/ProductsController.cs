@@ -44,7 +44,38 @@ namespace ApiProjectCamp.WebApi.Controllers
             {
                 return BadRequest(validationResult.Errors.Select(x => x.ErrorMessage));
             }
+        }
 
+        [HttpDelete]
+        public IActionResult DeleteProduct(int id)
+        {
+            var value = _context.Products.Find(id);
+            _context.Products.Remove(value);
+            _context.SaveChanges();
+            return Ok("Silme işlemi başarılı.");
+        }
+
+        [HttpGet("GetProduct")]
+        public IActionResult GetProduct(int id)
+        {
+            var value = _context.Products.Find(id);
+            return Ok(value);
+        }
+
+        [HttpPut]
+        public IActionResult UpdateProduct(UpdateProductDto updateProductDto)
+        {
+            var validationResult = _validator.Validate(_mapper.Map<Product>(updateProductDto));
+            if (validationResult.IsValid)
+            {
+                _context.Products.Update(_mapper.Map<Product>(updateProductDto));
+                _context.SaveChanges();
+                return Ok("Ürün bilgisi güncellendi.");
+            }
+            else
+            {
+                return BadRequest(validationResult.Errors.Select(x => x.ErrorMessage));
+            }
         }
     }
 }
