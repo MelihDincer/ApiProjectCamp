@@ -5,6 +5,7 @@ using AutoMapper;
 using FluentValidation;
 using Microsoft.AspNetCore.Http;
 using Microsoft.AspNetCore.Mvc;
+using Microsoft.EntityFrameworkCore;
 
 namespace ApiProjectCamp.WebApi.Controllers
 {
@@ -12,11 +13,11 @@ namespace ApiProjectCamp.WebApi.Controllers
     [ApiController]
     public class ProductsController : ControllerBase
     {
-        private readonly ApiContext _context;
+        private readonly PostgreApiContext _context;
         private readonly IValidator<Product> _validator;
         private readonly IMapper _mapper;
 
-        public ProductsController(ApiContext context, IValidator<Product> validator, IMapper mapper)
+        public ProductsController(PostgreApiContext context, IValidator<Product> validator, IMapper mapper)
         {
             _context = context;
             _validator = validator;
@@ -76,6 +77,13 @@ namespace ApiProjectCamp.WebApi.Controllers
             {
                 return BadRequest(validationResult.Errors.Select(x => x.ErrorMessage));
             }
+        }
+
+        [HttpGet("ProductListWithCategory")]
+        public IActionResult ProductListWithCategory()
+        {
+            var values = _context.Products.Include(x => x.Category).ToList();
+            return Ok(_mapper.Map<List<ResultProductWithCategoryDto>>(values));
         }
     }
 }

@@ -10,10 +10,10 @@ namespace ApiProjectCamp.WebApi.Mapping
     {
         public GeneralMapping()
         {
-            CreateMap<Feature,ResultFeatureDto>().ReverseMap();
-            CreateMap<Feature,GetByIdFeatureDto>().ReverseMap();
-            CreateMap<Feature,UpdateFeatureDto>().ReverseMap();
-            CreateMap<Feature,CreateFeatureDto>().ReverseMap();
+            CreateMap<Feature, ResultFeatureDto>().ReverseMap();
+            CreateMap<Feature, GetByIdFeatureDto>().ReverseMap();
+            CreateMap<Feature, UpdateFeatureDto>().ReverseMap();
+            CreateMap<Feature, CreateFeatureDto>().ReverseMap();
 
             CreateMap<Message, ResultMessageDto>().ReverseMap();
             CreateMap<Message, GetByIdMessageDto>().ReverseMap();
@@ -24,6 +24,7 @@ namespace ApiProjectCamp.WebApi.Mapping
             CreateMap<Product, GetByIdProductDto>().ReverseMap();
             CreateMap<Product, UpdateProductDto>().ReverseMap();
             CreateMap<Product, CreateProductDto>().ReverseMap();
+            CreateMap<Product, ResultProductWithCategoryDto>().ForMember(x => x.CategoryName, y => y.MapFrom(z => z.Category.CategoryName)).ReverseMap();
         }
     }
 }
