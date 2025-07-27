@@ -2,12 +2,15 @@ using ApiProjectCamp.WebApi.Context;
 using ApiProjectCamp.WebApi.Entities;
 using ApiProjectCamp.WebApi.ValidationRules;
 using FluentValidation;
+using Microsoft.EntityFrameworkCore;
 using System.Reflection;
+
 
 var builder = WebApplication.CreateBuilder(args);
 
 // Add services to the container.
 builder.Services.AddDbContext<ApiContext>();
+builder.Services.AddDbContext<PostgreApiContext>(options => options.UseNpgsql(builder.Configuration.GetConnectionString("PostgreSQLConnection")));
 builder.Services.AddAutoMapper(Assembly.GetExecutingAssembly());
 builder.Services.AddScoped<IValidator<Product>, ProductValidator>();
 builder.Services.AddControllers();
