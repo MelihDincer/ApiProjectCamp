@@ -61,7 +61,8 @@ namespace ApiProjectCamp.WebApi.Controllers
         public IActionResult GetProduct(int id)
         {
             var value = _context.Products.Find(id);
-            return Ok(value);
+            var dtoValue = _mapper.Map<Product>(value);
+            return Ok(dtoValue);
         }
 
         [HttpPut]
