@@ -14,6 +14,7 @@ builder.Services.AddDbContext<PostgreApiContext>(options => options.UseNpgsql(bu
 builder.Services.AddAutoMapper(Assembly.GetExecutingAssembly());
 builder.Services.AddScoped<IValidator<Product>, ProductValidator>();
 builder.Services.AddScoped<IValidator<Service>, ServiceValidator>();
+builder.Services.AddScoped<IValidator<Testimonial>, TestimonialValidator>();
 builder.Services.AddControllers();
 // Learn more about configuring Swagger/OpenAPI at https://aka.ms/aspnetcore/swashbuckle
 builder.Services.AddEndpointsApiExplorer();

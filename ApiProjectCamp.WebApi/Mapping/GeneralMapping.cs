@@ -2,6 +2,7 @@
 using ApiProjectCamp.WebApi.Dtos.MessageDtos;
 using ApiProjectCamp.WebApi.Dtos.ProductDtos;
 using ApiProjectCamp.WebApi.Dtos.ServiceDtos;
+using ApiProjectCamp.WebApi.Dtos.TestimonialDtos;
 using ApiProjectCamp.WebApi.Entities;
 using AutoMapper;
 
@@ -31,6 +32,11 @@ namespace ApiProjectCamp.WebApi.Mapping
             CreateMap<Service, GetByIdServiceDto>().ReverseMap();
             CreateMap<Service, UpdateServiceDto>().ReverseMap();
             CreateMap<Service, CreateServiceDto>().ReverseMap();
+
+            CreateMap<Testimonial, ResultTestimonialDto>().ReverseMap();
+            CreateMap<Testimonial, GetByIdTestimonialDto>().ReverseMap();
+            CreateMap<Testimonial, UpdateTestimonialDto>().ReverseMap();
+            CreateMap<Testimonial, CreateTestimonialDto>().ReverseMap();
         }
     }
 }

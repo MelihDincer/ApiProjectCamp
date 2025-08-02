@@ -1,6 +1,9 @@
+using Westwind.AspNetCore.LiveReload;
+
 var builder = WebApplication.CreateBuilder(args);
 
 // Add services to the container.
+builder.Services.AddLiveReload();
 builder.Services.AddControllersWithViews();
 
 builder.Services.AddHttpClient();
