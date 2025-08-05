@@ -22,5 +22,6 @@ namespace ApiProjectCamp.WebApi.Context
         public DbSet<Service> Services { get; set; }
         public DbSet<Testimonial> Testimonials { get; set; }
         public DbSet<Activity> Activities { get; set; }
+        public DbSet<Notification> Notifications { get; set; }
     }
 }
