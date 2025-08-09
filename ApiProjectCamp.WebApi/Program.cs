@@ -16,6 +16,7 @@ builder.Services.AddScoped<IValidator<Product>, ProductValidator>();
 builder.Services.AddScoped<IValidator<Service>, ServiceValidator>();
 builder.Services.AddScoped<IValidator<Testimonial>, TestimonialValidator>();
 builder.Services.AddScoped<IValidator<Notification>, NotificationValidator>();
+builder.Services.AddScoped<IValidator<Category>, CategoryValidator>();
 builder.Services.AddControllers();
 // Learn more about configuring Swagger/OpenAPI at https://aka.ms/aspnetcore/swashbuckle
 builder.Services.AddEndpointsApiExplorer();

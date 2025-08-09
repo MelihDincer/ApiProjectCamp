@@ -7,7 +7,7 @@ namespace ApiProjectCamp.WebApi.ValidationRules
     {
         public NotificationValidator()
         {
-            RuleFor(x=>x.NotificationDescription).NotEmpty().WithMessage("Bildirim açıklaması boş geçilemez!").MaximumLength(250).WithMessage("Maksimum 250 karakter girişi yapabilirsiniz!");
+            RuleFor(x=>x.NotificationDescription).NotEmpty().WithMessage("Bildirim açıklaması boş geçilemez!").MaximumLength(250).WithMessage("Maksimum 250 karakter girişi yapabilirsiniz!").MinimumLength(10).WithMessage("Minimum 10 karakter veri giriniz!"); ;
         }
     }
 }
