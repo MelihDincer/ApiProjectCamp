@@ -57,13 +57,27 @@ namespace ApiProjectCamp.WebUI.Controllers
         [HttpGet]
         public async Task<IActionResult> UpdateCategory(int id)
         {
-            var client = _httpClientFactory.CreateClient();
+            HttpClient client = _httpClientFactory.CreateClient();
             HttpResponseMessage responseMessage = await client.GetAsync("https://localhost:7208/api/Categories/GetCategory?id=" + id);
             if (responseMessage.IsSuccessStatusCode)
             {
                 var jsonData = await responseMessage.Content.ReadAsStringAsync();
                 var value = JsonConvert.DeserializeObject<GetByIdCategoryDto>(jsonData);
                 return View(value);
+            }
+            return View();
+        }
+
+        [HttpPost]
+        public async Task<IActionResult> UpdateCategory(UpdateCategoryDto updateCategoryDto)
+        {
+            HttpClient client = _httpClientFactory.CreateClient();
+            var jsonData = JsonConvert.SerializeObject(updateCategoryDto);
+            StringContent stringContent = new StringContent(jsonData, Encoding.UTF8, "application/json");
+            var responseMessage = await client.PutAsync("https://localhost:7208/api/Categories", stringContent);
+            if (responseMessage.IsSuccessStatusCode)
+            {
+                return RedirectToAction("CategoryList");
             }
             return View();
         }
