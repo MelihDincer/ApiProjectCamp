@@ -61,9 +61,10 @@ namespace ApiProjectCamp.WebApi.Controllers
         public IActionResult GetProduct(int id)
         {
             var value = _context.Products.Find(id);
-            var dtoValue = _mapper.Map<Product>(value);
+            var dtoValue = _mapper.Map<GetByIdProductDto>(value);
             return Ok(dtoValue);
         }
+
 
         [HttpPut]
         public IActionResult UpdateProduct(UpdateProductDto updateProductDto)
@@ -86,6 +87,14 @@ namespace ApiProjectCamp.WebApi.Controllers
         {
             var values = _context.Products.Include(x => x.Category).ToList();
             return Ok(_mapper.Map<List<ResultProductWithCategoryDto>>(values));
+        }
+
+        [HttpGet("GetProductWithCategory")]
+        public IActionResult GetProductWithCategory(int id)
+        {
+            var value = _context.Products.Include(x => x.Category).FirstOrDefault(x => x.ProductId == id);
+            var dtoValue = _mapper.Map<GetByIdProductWithCategoryDto>(value);
+            return Ok(dtoValue);
         }
     }
 }

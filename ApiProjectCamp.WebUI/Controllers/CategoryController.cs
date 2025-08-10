@@ -44,7 +44,7 @@ namespace ApiProjectCamp.WebUI.Controllers
             {
                 return RedirectToAction("CategoryList");
             }
-            return View();
+            return RedirectToAction("CreateCategory");
         }
 
         public async Task<IActionResult> DeleteCategory(int id)
