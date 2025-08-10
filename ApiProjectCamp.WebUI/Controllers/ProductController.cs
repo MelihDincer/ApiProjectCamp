@@ -64,7 +64,7 @@ namespace ApiProjectCamp.WebUI.Controllers
         public async Task<IActionResult> DeleteProduct(int id)
         {
             HttpClient client = _httpClientFactory.CreateClient();
-            await client.DeleteAsync("https://localhost:7208/api/Categories?id=" + id);
+            await client.DeleteAsync("https://localhost:7208/api/Products?id=" + id);
             return RedirectToAction("ProductList");
         }
 
