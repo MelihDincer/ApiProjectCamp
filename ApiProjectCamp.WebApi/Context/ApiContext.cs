@@ -8,7 +8,6 @@ namespace ApiProjectCamp.WebApi.Context
         protected override void OnConfiguring(DbContextOptionsBuilder optionsBuilder)
         {
             optionsBuilder.UseSqlServer("Server=DESKTOP-PBE5IS4\\SQLEXPRESS; initial catalog=ApiProjectCamp; integrated security = true;");
-
         }
 
         public DbSet<Category> Categories { get; set; }
@@ -23,5 +22,6 @@ namespace ApiProjectCamp.WebApi.Context
         public DbSet<Testimonial> Testimonials { get; set; }
         public DbSet<Activity> Activities { get; set; }
         public DbSet<Notification> Notifications { get; set; }
+        public DbSet<About> Abouts { get; set; }
     }
 }
