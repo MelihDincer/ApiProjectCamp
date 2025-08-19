@@ -1,0 +1,34 @@
+﻿@model CreateWhyChooseYummyDto
+@{
+    ViewData["Title"] = "CreateWhyChooseYummy";
+    Layout = "~/Views/AdminLayout/Index.cshtml";
+}
+
+<section class="section">
+    <div class="section-body">
+        <div class="row">
+            <div class="col-12 col-md-12 col-lg-12">
+                <div class="card">
+                    <div class="card-header">
+                        <h4>Yeni Neden Bizi Seçmelisiniz Alanı Ekleme Sayfası</h4>
+                    </div>
+                    <div class="card-body">
+                        <form method="post">
+                            <label>Başlık</label>
+                            <input type="text" asp-for="ServiceTitle" class="form-control" />
+                            <br />
+                            <label>Açıklama</label>
+                            <input type="text" asp-for="ServiceDescription" class="form-control" />
+                            <br />
+                            <label>İkon Url</label>
+                            <input type="text" asp-for="ServiceIconUrl" class="form-control" />
+                            <br />
+                            <button class="btn btn-primary btn-sm">Neden Bizi Seçmelisiniz Alanı Oluştur</button>
+                        </form>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</section>
+
