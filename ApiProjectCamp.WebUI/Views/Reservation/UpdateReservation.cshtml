@@ -1,8 +1,50 @@
-﻿
+﻿@model GetByIdReservationDto
 @{
     ViewData["Title"] = "UpdateReservation";
     Layout = "~/Views/AdminLayout/Index.cshtml";
 }
 
-<h1>UpdateReservation</h1>
+<section class="section">
+    <div class="section-body">
+        <div class="row">
+            <div class="col-12 col-md-12 col-lg-12">
+                <div class="card">
+                    <div class="card-header">
+                        <h4>Rezervasyon Güncelleme Sayfası</h4>
+                    </div>
+                    <div class="card-body">
+                        <form method="post">
+                            <input type="hidden" asp-for="ReservationId" />
+                            <label>Misafir Adı Soyadı</label>
+                            <input type="text" asp-for="ReservationNameSurname" class="form-control" />
+                            <br />
+                            <label>Misafir Email Adresi</label>
+                            <input type="text" asp-for="ReservationEmail" class="form-control" />
+                            <br />
+                            <label>Misafir Telefon Numarası</label>
+                            <input type="text" asp-for="ReservationPhoneNumber" class="form-control" />
+                            <br />
+                            <label>Rezervasyon Tarihi</label>
+                            <input type="date" asp-for="ReservationDate" class="form-control" />
+                            <br />
+                            <label>Rezervasyon Saati</label>
+                            <input type="time" asp-for="ReservationTime" class="form-control" />
+                            <br />
+                            <label>Kişi Sayısı</label>
+                            <input type="number" asp-for="ReservationCountOfPeople" class="form-control" />
+                            <br />
+                            <label>Misafir Mesajı</label>
+                            <input type="text" asp-for="ReservationMessage" class="form-control" />
+                            <br />
+                            <label>Rezervasyon Durumu</label>
+                            <input type="text" asp-for="ReservationMessage" class="form-control" />
+                            <br />
+                            <button class="btn btn-success btn-sm">Değişiklikleri Kaydet</button>
+                        </form>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</section>
 
