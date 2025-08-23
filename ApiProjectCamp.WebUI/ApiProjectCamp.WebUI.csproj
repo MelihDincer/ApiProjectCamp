@@ -17,4 +17,8 @@
     <PackageReference Include="Westwind.AspNetCore.LiveReload" Version="0.5.2" />
   </ItemGroup>
 
+  <ItemGroup>
+    <Folder Include="Dtos\NewFolder\" />
+  </ItemGroup>
+
 </Project>

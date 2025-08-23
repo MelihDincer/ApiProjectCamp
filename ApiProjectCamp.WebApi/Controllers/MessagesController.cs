@@ -25,12 +25,12 @@ namespace ApiProjectCamp.WebApi.Controllers
         {
             var values = _context.Messages.ToList();
             var result = _mapper.Map<List<ResultMessageDto>>(values);
-            return Ok(new
-            {
-                message = result.Any() ? "Mesajlar başarıyla getirildi." : "Hiç mesaj bulunamadı.",
-                data = result
-            });
-            //return Ok(_mapper.Map<List<ResultMessageDto>>(values));
+            //return Ok(new
+            //{
+            //    message = result.Any() ? "Mesajlar başarıyla getirildi." : "Hiç mesaj bulunamadı.",
+            //    data = result
+            //});
+            return Ok(_mapper.Map<List<ResultMessageDto>>(values));
         }
 
         [HttpPost]
@@ -61,6 +61,7 @@ namespace ApiProjectCamp.WebApi.Controllers
         [HttpPut]
         public IActionResult UpdateMessage(UpdateMessageDto updateMessageDto)
         {
+            updateMessageDto.SendDate = DateTime.Now;
             Message message = _mapper.Map<Message>(updateMessageDto);
             _context.Messages.Update(message);
             _context.SaveChanges();
