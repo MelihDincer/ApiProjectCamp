@@ -132,6 +132,28 @@ namespace ApiProjectCamp.WebUI.Controllers
                 return View(value);
             }
             return View();
+        } 
+        public PartialViewResult SendMessage()
+        {
+            return PartialView();
+        }
+
+        [HttpPost]
+        public async Task<IActionResult> SendMessage(CreateMessageDto createMessageDto)
+        {
+            HttpClient client = _httpClientFactory.CreateClient();
+            var jsonData = JsonConvert.SerializeObject(createMessageDto);
+            StringContent stringContent = new StringContent(jsonData, Encoding.UTF8, "application/json");
+            var responseMessage = await client.PostAsync("https://localhost:7208/api/Messages", stringContent);
+            if (responseMessage.IsSuccessStatusCode)
+            {
+                TempData["Success"] = "Mesajınız başarıyla gönderildi. Teşekkür ederiz 😊";
+            }
+            else
+            {
+                TempData["Error"] = "Bir hata oluştu ❌";               
+            }
+            return RedirectToAction("Index", "Default");
         }
     }
 }

@@ -1,0 +1,37 @@
+﻿@model CreateMessageDto
+
+<form asp-action="SendMessage" asp-controller="Message" method="post" class="melihform">
+    <div class="row gy-4">
+
+        <div class="col-md-6">
+            <input type="text" asp-for="MessageNameSurname" class="form-control" placeholder="Adınız Soyadınız" required>
+        </div>
+
+        <div class="col-md-6">
+            <input type="email" asp-for="MessageEmail" class="form-control" placeholder="Email Adresiniz" required>
+        </div>
+
+        <div class="col-md-12">
+            <input type="text" asp-for="MessageSubject" class="form-control" placeholder="Konu" required>
+        </div>
+
+        <div class="col-md-12">
+            <textarea asp-for="MessageDetails" class="form-control" rows="6" placeholder="Mesajınız" required></textarea>
+        </div>
+
+        <div class="col-md-12 text-center">
+            @if (TempData["Success"] != null)
+            {
+                <div class="alert alert-success">@TempData["Success"]</div>
+            }
+
+            @if (TempData["Error"] != null)
+            {
+                <div class="alert alert-danger">@TempData["Error"]</div>
+            }
+
+            <button type="submit" class="btn btn-primary">Mesajı Gönder</button>
+        </div>
+
+    </div>
+</form>

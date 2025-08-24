@@ -1448,10 +1448,20 @@ section,
   padding: 30px;
 }
 
+.book-a-table .melihform {
+  padding: 30px;
+}
+
 @media (max-width: 575px) {
   .book-a-table .php-email-form {
     padding: 20px;
   }
+}
+
+@media (max-width: 575px) {
+    .book-a-table .melihform {
+        padding: 20px;
+    }
 }
 
 .book-a-table .php-email-form input[type=text],
@@ -1469,6 +1479,21 @@ section,
   border-color: color-mix(in srgb, var(--default-color), transparent 80%);
 }
 
+.book-a-table .melihform input[type=text],
+.book-a-table .melihform input[type=email],
+.book-a-table .melihform input[type=number],
+.book-a-table .melihform input[type=date],
+.book-a-table .melihform input[type=time],
+.book-a-table .melihform textarea {
+    font-size: 14px;
+    padding: 10px 15px;
+    box-shadow: none;
+    border-radius: 0;
+    color: var(--default-color);
+    background-color: color-mix(in srgb, var(--background-color), transparent 20%);
+    border-color: color-mix(in srgb, var(--default-color), transparent 80%);
+}
+
 .book-a-table .php-email-form input[type=text]:focus,
 .book-a-table .php-email-form input[type=email]:focus,
 .book-a-table .php-email-form input[type=number]:focus,
@@ -1476,6 +1501,15 @@ section,
 .book-a-table .php-email-form input[type=time]:focus,
 .book-a-table .php-email-form textarea:focus {
   border-color: var(--accent-color);
+}
+
+.book-a-table .melihform input[type=text]:focus,
+.book-a-table .melihform input[type=email]:focus,
+.book-a-table .melihform input[type=number]:focus,
+.book-a-table .melihform input[type=date]:focus,
+.book-a-table .melihform input[type=time]:focus,
+.book-a-table .melihform textarea:focus {
+    border-color: var(--accent-color);
 }
 
 .book-a-table .php-email-form input[type=text]::placeholder,
@@ -1487,6 +1521,15 @@ section,
   color: color-mix(in srgb, var(--default-color), transparent 70%);
 }
 
+.book-a-table .melihform input[type=text]::placeholder,
+.book-a-table .melihform input[type=email]::placeholder,
+.book-a-table .melihform input[type=number]::placeholder,
+.book-a-table .melihform input[type=date]::placeholder,
+.book-a-table .melihform input[type=time]::placeholder,
+.book-a-table .melihform textarea::placeholder {
+    color: color-mix(in srgb, var(--default-color), transparent 70%);
+}
+
 .book-a-table .php-email-form button[type=submit] {
   color: var(--contrast-color);
   background: var(--accent-color);
@@ -1496,7 +1539,20 @@ section,
   border-radius: 4px;
 }
 
+.book-a-table .melihform button[type=submit] {
+    color: var(--contrast-color);
+    background: var(--accent-color);
+    border: 0;
+    padding: 14px 60px;
+    transition: 0.4s;
+    border-radius: 4px;
+}
+
 .book-a-table .php-email-form button[type=submit]:hover {
+  background: color-mix(in srgb, var(--accent-color), transparent 20%);
+}
+
+.book-a-table .melihform button[type=submit]:hover {
   background: color-mix(in srgb, var(--accent-color), transparent 20%);
 }
 
@@ -1605,10 +1661,25 @@ section,
   margin-top: 30px;
 }
 
+.contact .melihform {
+    background-color: var(--surface-color);
+    box-shadow: 0px 0px 20px rgba(0, 0, 0, 0.1);
+    padding: 30px;
+    margin-top: 30px;
+}
+
 @media (max-width: 575px) {
   .contact .php-email-form {
     padding: 20px;
   }
+}
+
+
+
+@media (max-width: 575px) {
+    .contact .melihform {
+        padding: 20px;
+    }
 }
 
 .contact .php-email-form input[type=text],
@@ -1623,16 +1694,39 @@ section,
   border-radius: 0;
 }
 
+.contact .melihform input[type=text],
+.contact .melihform input[type=email],
+.contact .melihform textarea {
+    color: var(--default-color);
+    background-color: color-mix(in srgb, var(--surface-color), transparent 50%);
+    border-color: color-mix(in srgb, var(--default-color), transparent 80%);
+    font-size: 14px;
+    padding: 10px 15px;
+    box-shadow: none;
+    border-radius: 0;
+}
+
 .contact .php-email-form input[type=text]:focus,
 .contact .php-email-form input[type=email]:focus,
 .contact .php-email-form textarea:focus {
   border-color: var(--accent-color);
+}
+.contact .melihform input[type=text]:focus,
+.contact .melihform input[type=email]:focus,
+.contact .melihform textarea:focus {
+    border-color: var(--accent-color);
 }
 
 .contact .php-email-form input[type=text]::placeholder,
 .contact .php-email-form input[type=email]::placeholder,
 .contact .php-email-form textarea::placeholder {
   color: color-mix(in srgb, var(--default-color), transparent 70%);
+}
+
+.contact .melihform input[type=text]::placeholder,
+.contact .melihform input[type=email]::placeholder,
+.contact .melihform textarea::placeholder {
+    color: color-mix(in srgb, var(--default-color), transparent 70%);
 }
 
 .contact .php-email-form button[type=submit] {
@@ -1644,13 +1738,26 @@ section,
   border-radius: 50px;
 }
 
+.contact .melihform button[type=submit] {
+    color: var(--contrast-color);
+    background: var(--accent-color);
+    border: 0;
+    padding: 10px 30px;
+    transition: 0.4s;
+    border-radius: 50px;
+}
+
 .contact .php-email-form button[type=submit]:hover {
   background: color-mix(in srgb, var(--accent-color), transparent 20%);
+}
+
+.contact .melihform button[type=submit]:hover {
+    backgroumelihformnd: color-mix(in srgb, var(--accent-color), transparent 20%);
 }
 
 /*--------------------------------------------------------------
 # Starter Section Section
 --------------------------------------------------------------*/
 .starter-section {
-  /* Add your styles here */
+    /* Add your styles here */
 }
