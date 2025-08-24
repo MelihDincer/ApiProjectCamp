@@ -1,0 +1,132 @@
+﻿@model GetByIdMessageDto
+@{
+    ViewData["Title"] = "AnswerMessageWithOpenAI";
+    Layout = "~/Views/AdminLayout/Index.cshtml";
+}
+
+@* <section class="section">
+    <div class="section-body">
+        <div class="row">
+            <div class="col-12 col-md-12 col-lg-12">
+                <div class="card">
+                    <div class="card-header">
+                        <h4>Open AI ile Otomatik Mesaj Yanıt Sayfası</h4>
+                    </div>
+                    <div class="card-body">
+                        <form method="post">
+                            <input type="hidden" asp-for="MessageId" />
+                            <label>Müşteri Mesajı</label>
+                            <textarea class="form-control" asp-for="MessageDetails" rows="10" style="min-height:250px; resize: none;"></textarea>
+                            <br />
+                            
+                            <label>Open AI Otomatik Cevabı</label>
+                            <textarea class="form-control" rows="10" style="min-height:250px; resize: none;"></textarea>
+                            <br />
+                            <button class="btn btn-success btn-sm">Cevabı mail olarak gönder >></button>
+                        </form>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</section> *@
+
+<style>
+    body {
+        background: linear-gradient(135deg, #1e3c72 0%, #2a5298 100%);
+        font-family: 'Segoe UI', sans-serif;
+    }
+
+    .glass-card {
+        backdrop-filter: blur(12px);
+        background: rgba(255, 255, 255, 0.08);
+        border: 1px solid rgba(255, 255, 255, 0.2);
+        border-radius: 20px;
+        box-shadow: 0 8px 32px rgba(0,0,0,0.2);
+    }
+
+    .form-control {
+        border-radius: 12px;
+        padding: 15px;
+        font-size: 15px;
+    }
+
+    .btn-modern {
+        border-radius: 12px;
+        font-weight: bold;
+        padding: 12px 24px;
+        transition: all 0.3s ease-in-out;
+    }
+
+    .btn-modern:hover {
+        transform: translateY(-2px);
+        box-shadow: 0 6px 16px rgba(0,0,0,0.3);
+    }
+
+    /* typing effect */
+    .typing::after {
+        content: "|";
+        animation: blink 1s infinite;
+        color: #22c55e;
+    }
+
+    @@keyframes blink {
+        0%, 50% { opacity: 1; }
+        51%, 100% { opacity: 0; }
+    }
+</style>
+
+<section class="section">
+    <div class="container">
+        <div class="row justify-content-center">
+            <div class="col-12 col-md-10 col-lg-8">
+                <div class="glass-card p-4 text-white">
+                    
+                    <div class="mb-4 text-center">
+                        <h2 class="fw-bold mb-2">🤖 AI Destekli Yanıt Merkezi</h2>
+                        <p class="text-light">Müşteri mesajlarını yapay zekâ ile kolayca yanıtla</p>
+                    </div>
+
+                    <form method="post">
+                        <input type="hidden" asp-for="MessageId" />
+
+                        <!-- Müşteri Mesajı -->
+                        <div class="mb-4">
+                            <label class="form-label fw-semibold">📩 Müşteri Mesajı</label>
+                            <textarea class="form-control" asp-for="MessageDetails"
+                                       readonly
+                                      style="min-height: 240px; resize:none;"></textarea>
+                        </div>
+
+                        <!-- OpenAI Yanıtı -->
+                        <div class="mb-4">
+                            <label class="form-label fw-semibold">✨ OpenAI Cevabı</label>
+                            <div class="position-relative">
+                                <textarea class="form-control" id="aiReply"
+                                           readonly
+                                          style=" min-height: 240px; resize:none;">@ViewBag.answerAI</textarea>
+                               @*  <div id="loadingSpinner" class="position-absolute top-50 start-50 translate-middle text-center d-none">
+                                    <div class="spinner-border text-success" role="status"></div>
+                                    <p class="mt-2">AI düşünüyor...</p>
+                                </div> *@
+                            </div>
+                        </div>
+
+                        <!-- Buton -->
+                        <div class="text-end">
+                            <button class="btn btn-success btn-modern">
+                                📤 Cevabı Mail Olarak Gönder
+                            </button>
+                        </div>
+                    </form>
+
+                    <div class="text-center mt-4 small text-light">
+                        Bu yanıt <span class="fw-bold text-success">OpenAI</span> tarafından oluşturuldu 🚀
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</section>
+
+

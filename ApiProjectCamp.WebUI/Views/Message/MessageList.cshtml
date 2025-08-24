@@ -38,8 +38,10 @@
                                         <td>@item.MessageEmail</td>
                                         <td>@item.MessageSubject</td>
                                         <td>@item.SendDate.ToString("dd MMMM yyyy")</td>
-                                        <td><a href="/Message/DeleteMessage/@item.MessageId" class="btn btn-sm btn-info">Mesajı Aç</a></td>
-                                        <td><a href="/Message/DeleteMessage/@item.MessageId" class="btn btn-sm btn-danger">Sil</a></td>
+                                        <td><a href="/Message/AnswerMessageWithOpenAI/@item.MessageId" class="btn btn-sm btn-info">Mesajı Aç</a></td>
+                                        <td><a href="/Message/DeleteMessage/@item.MessageId" class="btn btn-sm btn-danger" onclick="
+                                        return confirm('Bu mesajı silmek istediğinize emin misiniz?');
+                                        ">Sil</a></td>
                                         <td><a href="/Message/UpdateMessage/@item.MessageId" class="btn btn-sm btn-success">Güncelle</a></td>
                                     </tr>
                                 }

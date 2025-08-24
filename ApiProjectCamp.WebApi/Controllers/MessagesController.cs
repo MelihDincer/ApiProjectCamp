@@ -36,6 +36,7 @@ namespace ApiProjectCamp.WebApi.Controllers
         [HttpPost]
         public IActionResult CreateMessage(CreateMessageDto createMessageDto)
         {
+            createMessageDto.SendDate = DateTime.Now;
             Message message = _mapper.Map<Message>(createMessageDto);
             _context.Messages.Add(message);
             _context.SaveChanges();
