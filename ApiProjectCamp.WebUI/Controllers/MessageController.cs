@@ -164,11 +164,37 @@ namespace ApiProjectCamp.WebUI.Controllers
                     englishText = translateDoc.RootElement[0].GetProperty("translation_textr").GetString();
                     ViewBag.v = englishText;
                 }
-            }
-            catch (Exception)
-            {
 
-                throw;
+                var toxicRequestBody = new
+                {
+                    inputs = englishText
+                };
+                var toxicJson = System.Text.Json.JsonSerializer.Serialize(toxicRequestBody);
+                var toxicContext = new StringContent(toxicJson, Encoding.UTF8, "application/json");
+                var toxicResponse = await client2.PostAsync("https://api-inference.hugging-face.co/models/unitary/toxic-bert", toxicContext);//label=>Toxiclik Etiketi, score=>Toxiclik oranı
+                var toxicResponseString = await toxicResponse.Content.ReadAsStringAsync();
+                if (toxicResponseString.TrimStart().StartsWith("["))
+                {
+                    var toxicDoc = JsonDocument.Parse(toxicResponseString);
+                    foreach (var item in toxicDoc.RootElement[0].EnumerateArray())
+                    {
+                        string label = item.GetProperty("label").GetString();
+                        double score = item.GetProperty("score").GetDouble();
+                        if (score > 0.5)
+                        {
+                            createMessageDto.Status = "Toxic Mesaj";
+                            break;
+                        }
+                    }
+                }
+                if (string.IsNullOrEmpty(createMessageDto.Status))
+                {
+                    createMessageDto.Status = "Mesaj Alındı";
+                }
+            }
+            catch (Exception ex)
+            {
+                createMessageDto.Status = "Onay Bekliyor";
             }
 
             HttpClient client = _httpClientFactory.CreateClient();
