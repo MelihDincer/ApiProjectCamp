@@ -3,6 +3,7 @@ using Microsoft.AspNetCore.Mvc;
 using Newtonsoft.Json;
 using System.Net.Http.Headers;
 using System.Text;
+using System.Text.Json;
 using static ApiProjectCamp.WebUI.Controllers.AIController;
 
 namespace ApiProjectCamp.WebUI.Controllers
@@ -132,7 +133,7 @@ namespace ApiProjectCamp.WebUI.Controllers
                 return View(value);
             }
             return View();
-        } 
+        }
         public PartialViewResult SendMessage()
         {
             return PartialView();
@@ -141,6 +142,35 @@ namespace ApiProjectCamp.WebUI.Controllers
         [HttpPost]
         public async Task<IActionResult> SendMessage(CreateMessageDto createMessageDto)
         {
+            var client2 = new HttpClient();
+            var apiKey = "";
+            client2.DefaultRequestHeaders.Authorization = new AuthenticationHeaderValue("Bearer", apiKey);
+            try
+            {
+                var translateRequestBody = new
+                {
+                    inputs = createMessageDto.MessageDetails
+                };
+                var translateJson = System.Text.Json.JsonSerializer.Serialize(translateRequestBody);
+                var translateContent = new StringContent(translateJson, Encoding.UTF8, "application/json");
+
+                var translateResponse = await client2.PostAsync("https://api-inference.hugging-face.co/models/Helsinki-NLP/opus-mt-tr-en", translateContent);
+                var translateResponseString = await translateResponse.Content.ReadAsStringAsync();
+
+                string englishText = createMessageDto.MessageDetails;
+                if (translateResponseString.TrimStart().StartsWith("["))
+                {
+                    var translateDoc = JsonDocument.Parse(translateResponseString);
+                    englishText = translateDoc.RootElement[0].GetProperty("translation_textr").GetString();
+                    ViewBag.v = englishText;
+                }
+            }
+            catch (Exception)
+            {
+
+                throw;
+            }
+
             HttpClient client = _httpClientFactory.CreateClient();
             var jsonData = JsonConvert.SerializeObject(createMessageDto);
             StringContent stringContent = new StringContent(jsonData, Encoding.UTF8, "application/json");
@@ -151,7 +181,7 @@ namespace ApiProjectCamp.WebUI.Controllers
             }
             else
             {
-                TempData["Error"] = "Bir hata oluştu ❌";               
+                TempData["Error"] = "Bir hata oluştu ❌";
             }
             return RedirectToAction("Index", "Default");
         }
