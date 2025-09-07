@@ -1,14 +1,14 @@
-﻿using ApiProjectCamp.WebUI.Dtos.NotificationDtos;
+﻿using ApiProjectCamp.WebUI.Dtos.MessageDtos;
 using Microsoft.AspNetCore.Mvc;
 using Newtonsoft.Json;
 
-namespace ApiProjectCamp.WebUI.ViewComponents.AdminLayoutViewComponents.AdminLayoutNavbarViewComponents
+namespace ApiProjectCamp.WebUI.ViewComponents.AdminLayoutNavbarViewComponents
 {
-    public class _NavbarNotificationAdminLayoutComponentPartial : ViewComponent
+    public class _NavbarMessageListAdminLayoutComponentPartial : ViewComponent
     {
         private readonly IHttpClientFactory _httpClientFactory;
 
-        public _NavbarNotificationAdminLayoutComponentPartial(IHttpClientFactory httpClientFactory)
+        public _NavbarMessageListAdminLayoutComponentPartial(IHttpClientFactory httpClientFactory)
         {
             _httpClientFactory = httpClientFactory;
         }
@@ -16,14 +16,15 @@ namespace ApiProjectCamp.WebUI.ViewComponents.AdminLayoutViewComponents.AdminLay
         public async Task<IViewComponentResult> InvokeAsync()
         {
             var client = _httpClientFactory.CreateClient();
-            var responseMessage = await client.GetAsync("https://localhost:7208/api/Notifications");
+            var responseMessage = await client.GetAsync("https://localhost:7208/api/Messages/MessageListByIsReadFalse");
             if (responseMessage.IsSuccessStatusCode)
             {
                 var jsonData = await responseMessage.Content.ReadAsStringAsync();
-                var values = JsonConvert.DeserializeObject<List<ResultNotificationDto>>(jsonData);
+                var values = JsonConvert.DeserializeObject<List<ResultMessageByIsReadFalseDto>>(jsonData);
                 return View(values);
             }
             return View();
         }
+
     }
 }

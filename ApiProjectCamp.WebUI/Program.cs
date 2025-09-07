@@ -7,6 +7,8 @@ builder.Services.AddLiveReload();
 builder.Services.AddControllersWithViews();
 
 builder.Services.AddHttpClient();
+builder.Services.AddSignalR();
+
 
 var app = builder.Build();
 

@@ -1,6 +1,6 @@
 ﻿using Microsoft.AspNetCore.Mvc;
 
-namespace ApiProjectCamp.WebUI.ViewComponents.AdminLayoutViewComponents.AdminLayoutNavbarViewComponents
+namespace ApiProjectCamp.WebUI.ViewComponents.AdminLayoutViewComponents
 {
     public class _SidebarAdminLayoutComponentPartial : ViewComponent
     {
