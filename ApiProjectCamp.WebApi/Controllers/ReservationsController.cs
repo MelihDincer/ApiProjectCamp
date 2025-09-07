@@ -71,5 +71,33 @@ namespace ApiProjectCamp.WebApi.Controllers
             }
             return BadRequest(validationResult.Errors.Select(x => x.ErrorMessage));
         }
+
+        [HttpGet("GetTotalReservastionCount")]
+        public IActionResult GetTotalReservationCount()
+        {
+            var value = _context.Reservations.Count();
+            return Ok(value);
+        }
+
+        [HttpGet("GetTotalCustomerCount")]
+        public IActionResult GetTotalCustomerCount()
+        {
+            var value = _context.Reservations.Sum(x => x.ReservationCountOfPeople);
+            return Ok(value);
+        }
+
+        [HttpGet("GetPendingReservations")]
+        public IActionResult GetPendingReservations()
+        {
+            var value = _context.Reservations.Where(x=>x.ReservationStatus == "Rezervasyon Onayı Bekleniyor").Count();
+            return Ok(value);
+        }
+
+        [HttpGet("GetApprovedReservations")]
+        public IActionResult GetApprovedReservations()
+        {
+            var value = _context.Reservations.Where(x => x.ReservationStatus == "Rezervasyon Onaylandı").Count();
+            return Ok(value);
+        }
     }
 }
