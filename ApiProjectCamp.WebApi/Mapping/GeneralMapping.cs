@@ -1,5 +1,6 @@
 ﻿using ApiProjectCamp.WebApi.Dtos.AboutDtos;
 using ApiProjectCamp.WebApi.Dtos.CategoryDtos;
+using ApiProjectCamp.WebApi.Dtos.EmployeeTaskDtos;
 using ApiProjectCamp.WebApi.Dtos.FeatureDtos;
 using ApiProjectCamp.WebApi.Dtos.ImageDtos;
 using ApiProjectCamp.WebApi.Dtos.MessageDtos;
@@ -68,6 +69,11 @@ namespace ApiProjectCamp.WebApi.Mapping
             CreateMap<Image, GetByIdImageDto>().ReverseMap();
             CreateMap<Image, UpdateImageDto>().ReverseMap();
             CreateMap<Image, CreateImageDto>().ReverseMap();
+
+            CreateMap<EmployeeTask, ResultEmployeeTaskDto>().ReverseMap();
+            CreateMap<EmployeeTask, GetByIdEmployeeTaskDto>().ReverseMap();
+            CreateMap<EmployeeTask, UpdateEmployeeTaskDto>().ReverseMap();
+            CreateMap<EmployeeTask, CreateEmployeeTaskDto>().ReverseMap();
         }
     }
 }
