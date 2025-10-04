@@ -1,15 +1,19 @@
-﻿namespace ApiProjectCamp.WebApi.Entities
+﻿using System.ComponentModel.DataAnnotations;
+
+namespace ApiProjectCamp.WebApi.Entities
 {
     public class EmployeeTask
     {
+        [Key]
         public int EmployeeTaskId { get; set; }
-        public int EmployeeTaskName { get; set; }
-        public byte StatusValue { get; set; }
+        public string TaskName { get; set; }
+        public byte TaskStatusValue { get; set; }
         public DateTime AssignDate { get; set; }
         public DateTime DueDate { get; set; }
         public string Priority { get; set; }
         public string TaskStatus { get; set; }
-        public int ChefId { get; set; }
-        public Chef Chef { get; set; }
+
+        // Many-to-many navigation
+        public List<EmployeeTaskChef> EmployeeTaskChefs { get; set; }
     }
 }
