@@ -17,7 +17,7 @@ namespace ApiProjectCamp.WebUI.Controllers
         public async Task<IActionResult> AboutList()
         {
             HttpClient client = _httpClientFactory.CreateClient();
-            HttpResponseMessage responseMessage = await client.GetAsync("https://localhost:7208/api/Abouts");
+            HttpResponseMessage responseMessage = await client.GetAsync("https://localhost:44338/api/Abouts");
             if (responseMessage.IsSuccessStatusCode)
             {
                 var jsonData = await responseMessage.Content.ReadAsStringAsync();
@@ -39,7 +39,7 @@ namespace ApiProjectCamp.WebUI.Controllers
             HttpClient client = _httpClientFactory.CreateClient();
             var jsonData = JsonConvert.SerializeObject(createAboutDto);
             StringContent stringContent = new StringContent(jsonData, Encoding.UTF8, "application/json");
-            HttpResponseMessage httpResponseMessage = await client.PostAsync("https://localhost:7208/api/Abouts", stringContent);
+            HttpResponseMessage httpResponseMessage = await client.PostAsync("https://localhost:44338/api/Abouts", stringContent);
             if (httpResponseMessage.IsSuccessStatusCode)
             {
                 return RedirectToAction("AboutList");
@@ -50,7 +50,7 @@ namespace ApiProjectCamp.WebUI.Controllers
         public async Task<IActionResult> DeleteAbout(int id)
         {
             HttpClient client = _httpClientFactory.CreateClient();
-            HttpResponseMessage httpResponseMessage = await client.DeleteAsync($"https://localhost:7208/api/Abouts?id={id}");
+            HttpResponseMessage httpResponseMessage = await client.DeleteAsync($"https://localhost:44338/api/Abouts?id={id}");
             if (httpResponseMessage.IsSuccessStatusCode)
             {
                 return RedirectToAction("AboutList");
@@ -62,7 +62,7 @@ namespace ApiProjectCamp.WebUI.Controllers
         public async Task<IActionResult> UpdateAbout(int id)
         {
             HttpClient client = _httpClientFactory.CreateClient();
-            HttpResponseMessage httpResponseMessage = await client.GetAsync($"https://localhost:7208/api/Abouts/GetAbout?id={id}");
+            HttpResponseMessage httpResponseMessage = await client.GetAsync($"https://localhost:44338/api/Abouts/GetAbout?id={id}");
             if (httpResponseMessage.IsSuccessStatusCode)
             {
                 var jsonData = await httpResponseMessage.Content.ReadAsStringAsync();
@@ -78,7 +78,7 @@ namespace ApiProjectCamp.WebUI.Controllers
             HttpClient client = _httpClientFactory.CreateClient();
             var jsonData = JsonConvert.SerializeObject(updateAboutDto);
             StringContent content = new StringContent(jsonData, Encoding.UTF8, "application/json");
-            HttpResponseMessage httpResponseMessage = await client.PutAsync("https://localhost:7208/api/Abouts", content);
+            HttpResponseMessage httpResponseMessage = await client.PutAsync("https://localhost:44338/api/Abouts", content);
             if (httpResponseMessage.IsSuccessStatusCode)
             {
                 return RedirectToAction("AboutList");

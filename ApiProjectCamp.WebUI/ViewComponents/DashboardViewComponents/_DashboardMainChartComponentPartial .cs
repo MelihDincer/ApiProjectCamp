@@ -17,7 +17,7 @@ namespace ApiProjectCamp.WebUI.ViewComponents.DashboardViewComponents
         public async Task<IViewComponentResult> InvokeAsync()
         {
             var client = _httpClientFactory.CreateClient();
-            client.BaseAddress = new Uri("https://localhost:7208/");
+            client.BaseAddress = new Uri("https://localhost:44338/");
 
             var response = await client.GetAsync("api/Reservations/GetReservationStats");
             var json = await response.Content.ReadAsStringAsync();

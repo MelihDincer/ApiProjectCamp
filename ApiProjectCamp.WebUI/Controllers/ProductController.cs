@@ -19,7 +19,7 @@ namespace ApiProjectCamp.WebUI.Controllers
         public async Task<IActionResult> ProductList()
         {
             HttpClient client = _httpClientFactory.CreateClient();
-            HttpResponseMessage responseMessage = await client.GetAsync("https://localhost:7208/api/Products/ProductListWithCategory");
+            HttpResponseMessage responseMessage = await client.GetAsync("https://localhost:44338/api/Products/ProductListWithCategory");
             if (responseMessage.IsSuccessStatusCode)
             {
                 var jsonData = await responseMessage.Content.ReadAsStringAsync();
@@ -33,7 +33,7 @@ namespace ApiProjectCamp.WebUI.Controllers
         public async Task<IActionResult> CreateProduct()
         {
             HttpClient client = _httpClientFactory.CreateClient();
-            HttpResponseMessage responseMessage = await client.GetAsync("https://localhost:7208/api/Categories");
+            HttpResponseMessage responseMessage = await client.GetAsync("https://localhost:44338/api/Categories");
 
             var jsonData = await responseMessage.Content.ReadAsStringAsync();
             var values = JsonConvert.DeserializeObject<List<ResultCategoryDto>>(jsonData);
@@ -53,7 +53,7 @@ namespace ApiProjectCamp.WebUI.Controllers
             HttpClient client = _httpClientFactory.CreateClient();
             var jsonData = JsonConvert.SerializeObject(createProductDto);
             StringContent stringContent = new StringContent(jsonData, Encoding.UTF8, "application/json");
-            var responseMessage = await client.PostAsync("https://localhost:7208/api/Products", stringContent);
+            var responseMessage = await client.PostAsync("https://localhost:44338/api/Products", stringContent);
             if (responseMessage.IsSuccessStatusCode)
             {
                 return RedirectToAction("ProductList");
@@ -64,7 +64,7 @@ namespace ApiProjectCamp.WebUI.Controllers
         public async Task<IActionResult> DeleteProduct(int id)
         {
             HttpClient client = _httpClientFactory.CreateClient();
-            await client.DeleteAsync("https://localhost:7208/api/Products?id=" + id);
+            await client.DeleteAsync("https://localhost:44338/api/Products?id=" + id);
             return RedirectToAction("ProductList");
         }
 
@@ -72,7 +72,7 @@ namespace ApiProjectCamp.WebUI.Controllers
         public async Task<IActionResult> UpdateProduct(int id)
         {
             HttpClient client = _httpClientFactory.CreateClient();
-            HttpResponseMessage categoryResponseMessage = await client.GetAsync("https://localhost:7208/api/Categories");
+            HttpResponseMessage categoryResponseMessage = await client.GetAsync("https://localhost:44338/api/Categories");
 
             var jsonCategoryData = await categoryResponseMessage.Content.ReadAsStringAsync();
             var categories = JsonConvert.DeserializeObject<List<ResultCategoryDto>>(jsonCategoryData);
@@ -84,7 +84,7 @@ namespace ApiProjectCamp.WebUI.Controllers
                                                    }).ToList();
             ViewBag.v = categoryList;
 
-            HttpResponseMessage productResponseMessage = await client.GetAsync("https://localhost:7208/api/Products/GetProductWithCategory?id=" + id);
+            HttpResponseMessage productResponseMessage = await client.GetAsync("https://localhost:44338/api/Products/GetProductWithCategory?id=" + id);
             if (productResponseMessage.IsSuccessStatusCode)
             {
                 var jsonProductData = await productResponseMessage.Content.ReadAsStringAsync();
@@ -100,7 +100,7 @@ namespace ApiProjectCamp.WebUI.Controllers
             HttpClient client = _httpClientFactory.CreateClient();
             var jsonData = JsonConvert.SerializeObject(updateProductDto);
             StringContent stringContent = new StringContent(jsonData, Encoding.UTF8, "application/json");
-            var responseMessage = await client.PutAsync("https://localhost:7208/api/Products", stringContent);
+            var responseMessage = await client.PutAsync("https://localhost:44338/api/Products", stringContent);
             if (responseMessage.IsSuccessStatusCode)
             {
                 return RedirectToAction("ProductList");

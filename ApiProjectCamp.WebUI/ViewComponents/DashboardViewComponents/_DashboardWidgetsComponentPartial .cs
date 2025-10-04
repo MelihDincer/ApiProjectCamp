@@ -22,25 +22,25 @@ namespace ApiProjectCamp.WebUI.ViewComponents.DashboardViewComponents
             r4 = rnd.Next(1, 35);
 
             HttpClient client = _httpClientFactory.CreateClient();
-            HttpResponseMessage responseMessage = await client.GetAsync("https://localhost:7208/api/Reservations/GetTotalReservastionCount");
+            HttpResponseMessage responseMessage = await client.GetAsync("https://localhost:44338/api/Reservations/GetTotalReservastionCount");
             var jsonData = await responseMessage.Content.ReadAsStringAsync();
             ViewBag.totalReservationCount = jsonData;
             ViewBag.r1 = r1;
 
             HttpClient client2 = _httpClientFactory.CreateClient();
-            HttpResponseMessage responseMessage2 = await client.GetAsync("https://localhost:7208/api/Reservations/GetTotalCustomerCount");
+            HttpResponseMessage responseMessage2 = await client.GetAsync("https://localhost:44338/api/Reservations/GetTotalCustomerCount");
             var jsonData2 = await responseMessage2.Content.ReadAsStringAsync();
             ViewBag.totalCustomerCount = jsonData2;
             ViewBag.r2 = r2;
 
             HttpClient client3 = _httpClientFactory.CreateClient();
-            HttpResponseMessage responseMessage3 = await client.GetAsync("https://localhost:7208/api/Reservations/GetPendingReservations");
+            HttpResponseMessage responseMessage3 = await client.GetAsync("https://localhost:44338/api/Reservations/GetPendingReservations");
             var jsonData3 = await responseMessage3.Content.ReadAsStringAsync();
             ViewBag.pendingReservations = jsonData3;
             ViewBag.r3 = r3;
 
             HttpClient client4 = _httpClientFactory.CreateClient();
-            HttpResponseMessage responseMessage4 = await client.GetAsync("https://localhost:7208/api/Reservations/GetApprovedReservations");
+            HttpResponseMessage responseMessage4 = await client.GetAsync("https://localhost:44338/api/Reservations/GetApprovedReservations");
             var jsonData4 = await responseMessage4.Content.ReadAsStringAsync();
             ViewBag.approvedReservations = jsonData4;
             ViewBag.r4 = r4;

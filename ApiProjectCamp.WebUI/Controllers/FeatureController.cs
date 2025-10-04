@@ -17,7 +17,7 @@ namespace ApiProjectCamp.WebUI.Controllers
         public async Task<IActionResult> FeatureList()
         {
             HttpClient client = _httpClientFactory.CreateClient();
-            HttpResponseMessage responseMessage = await client.GetAsync("https://localhost:7208/api/Features");
+            HttpResponseMessage responseMessage = await client.GetAsync("https://localhost:44338/api/Features");
             if (responseMessage.IsSuccessStatusCode)
             {
                 var jsonData = await responseMessage.Content.ReadAsStringAsync();
@@ -39,7 +39,7 @@ namespace ApiProjectCamp.WebUI.Controllers
             HttpClient client = _httpClientFactory.CreateClient();
             var jsonData = JsonConvert.SerializeObject(createFeatureDto);
             StringContent stringContent = new StringContent(jsonData, Encoding.UTF8, "application/json");
-            var responseMessage = await client.PostAsync("https://localhost:7208/api/Features", stringContent);
+            var responseMessage = await client.PostAsync("https://localhost:44338/api/Features", stringContent);
             if (responseMessage.IsSuccessStatusCode)
             {
                 return RedirectToAction("FeatureList");
@@ -50,7 +50,7 @@ namespace ApiProjectCamp.WebUI.Controllers
         public async Task<IActionResult> DeleteFeature(int id)
         {
             HttpClient client = _httpClientFactory.CreateClient();
-            await client.DeleteAsync("https://localhost:7208/api/Features?id=" + id);
+            await client.DeleteAsync("https://localhost:44338/api/Features?id=" + id);
             return RedirectToAction("FeatureList");
         }
 
@@ -58,7 +58,7 @@ namespace ApiProjectCamp.WebUI.Controllers
         public async Task<IActionResult> UpdateFeature(int id)
         {
             HttpClient client = _httpClientFactory.CreateClient();
-            HttpResponseMessage responseMessage = await client.GetAsync("https://localhost:7208/api/Features/GetFeature?id=" + id);
+            HttpResponseMessage responseMessage = await client.GetAsync("https://localhost:44338/api/Features/GetFeature?id=" + id);
             if (responseMessage.IsSuccessStatusCode)
             {
                 var jsonData = await responseMessage.Content.ReadAsStringAsync();
@@ -74,7 +74,7 @@ namespace ApiProjectCamp.WebUI.Controllers
             HttpClient client = _httpClientFactory.CreateClient();
             var jsonData = JsonConvert.SerializeObject(updateFeatureDto);
             StringContent stringContent = new StringContent(jsonData, Encoding.UTF8, "application/json");
-            var responseMessage = await client.PutAsync("https://localhost:7208/api/Features", stringContent);
+            var responseMessage = await client.PutAsync("https://localhost:44338/api/Features", stringContent);
             if (responseMessage.IsSuccessStatusCode)
             {
                 return RedirectToAction("FeatureList");

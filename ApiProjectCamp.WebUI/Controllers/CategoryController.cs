@@ -17,7 +17,7 @@ namespace ApiProjectCamp.WebUI.Controllers
         public async Task<IActionResult> CategoryList()
         {
             HttpClient client = _httpClientFactory.CreateClient();
-            HttpResponseMessage responseMessage = await client.GetAsync("https://localhost:7208/api/Categories");
+            HttpResponseMessage responseMessage = await client.GetAsync("https://localhost:44338/api/Categories");
             if (responseMessage.IsSuccessStatusCode)
             {
                 var jsonData = await responseMessage.Content.ReadAsStringAsync();
@@ -39,7 +39,7 @@ namespace ApiProjectCamp.WebUI.Controllers
             HttpClient client = _httpClientFactory.CreateClient();
             var jsonData = JsonConvert.SerializeObject(createCategoryDto);
             StringContent stringContent = new StringContent(jsonData, Encoding.UTF8, "application/json");
-            var responseMessage = await client.PostAsync("https://localhost:7208/api/Categories", stringContent);
+            var responseMessage = await client.PostAsync("https://localhost:44338/api/Categories", stringContent);
             if (responseMessage.IsSuccessStatusCode)
             {
                 return RedirectToAction("CategoryList");
@@ -50,7 +50,7 @@ namespace ApiProjectCamp.WebUI.Controllers
         public async Task<IActionResult> DeleteCategory(int id)
         {
             HttpClient client = _httpClientFactory.CreateClient();
-            await client.DeleteAsync("https://localhost:7208/api/Categories?id=" + id);
+            await client.DeleteAsync("https://localhost:44338/api/Categories?id=" + id);
             return RedirectToAction("CategoryList");
         }
 
@@ -58,7 +58,7 @@ namespace ApiProjectCamp.WebUI.Controllers
         public async Task<IActionResult> UpdateCategory(int id)
         {
             HttpClient client = _httpClientFactory.CreateClient();
-            HttpResponseMessage responseMessage = await client.GetAsync("https://localhost:7208/api/Categories/GetCategory?id=" + id);
+            HttpResponseMessage responseMessage = await client.GetAsync("https://localhost:44338/api/Categories/GetCategory?id=" + id);
             if (responseMessage.IsSuccessStatusCode)
             {
                 var jsonData = await responseMessage.Content.ReadAsStringAsync();
@@ -74,7 +74,7 @@ namespace ApiProjectCamp.WebUI.Controllers
             HttpClient client = _httpClientFactory.CreateClient();
             var jsonData = JsonConvert.SerializeObject(updateCategoryDto);
             StringContent stringContent = new StringContent(jsonData, Encoding.UTF8, "application/json");
-            var responseMessage = await client.PutAsync("https://localhost:7208/api/Categories", stringContent);
+            var responseMessage = await client.PutAsync("https://localhost:44338/api/Categories", stringContent);
             if (responseMessage.IsSuccessStatusCode)
             {
                 return RedirectToAction("CategoryList");

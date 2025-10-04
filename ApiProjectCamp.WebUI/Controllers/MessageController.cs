@@ -20,7 +20,7 @@ namespace ApiProjectCamp.WebUI.Controllers
         public async Task<IActionResult> MessageList()
         {
             HttpClient client = _httpClientFactory.CreateClient();
-            HttpResponseMessage responseMessage = await client.GetAsync("https://localhost:7208/api/Messages");
+            HttpResponseMessage responseMessage = await client.GetAsync("https://localhost:44338/api/Messages");
             if (responseMessage.IsSuccessStatusCode)
             {
                 var jsonData = await responseMessage.Content.ReadAsStringAsync();
@@ -42,7 +42,7 @@ namespace ApiProjectCamp.WebUI.Controllers
             HttpClient client = _httpClientFactory.CreateClient();
             var jsonData = JsonConvert.SerializeObject(createMessageDto);
             StringContent stringContent = new StringContent(jsonData, Encoding.UTF8, "application/json");
-            var responseMessage = await client.PostAsync("https://localhost:7208/api/Messages", stringContent);
+            var responseMessage = await client.PostAsync("https://localhost:44338/api/Messages", stringContent);
             if (responseMessage.IsSuccessStatusCode)
             {
                 return RedirectToAction("MessageList");
@@ -53,7 +53,7 @@ namespace ApiProjectCamp.WebUI.Controllers
         public async Task<IActionResult> DeleteMessage(int id)
         {
             HttpClient client = _httpClientFactory.CreateClient();
-            await client.DeleteAsync("https://localhost:7208/api/Messages?id=" + id);
+            await client.DeleteAsync("https://localhost:44338/api/Messages?id=" + id);
             return RedirectToAction("MessageList");
         }
 
@@ -61,7 +61,7 @@ namespace ApiProjectCamp.WebUI.Controllers
         public async Task<IActionResult> UpdateMessage(int id)
         {
             HttpClient client = _httpClientFactory.CreateClient();
-            HttpResponseMessage responseMessage = await client.GetAsync("https://localhost:7208/api/Messages/GetMessage?id=" + id);
+            HttpResponseMessage responseMessage = await client.GetAsync("https://localhost:44338/api/Messages/GetMessage?id=" + id);
             if (responseMessage.IsSuccessStatusCode)
             {
                 var jsonData = await responseMessage.Content.ReadAsStringAsync();
@@ -77,7 +77,7 @@ namespace ApiProjectCamp.WebUI.Controllers
             HttpClient client = _httpClientFactory.CreateClient();
             var jsonData = JsonConvert.SerializeObject(updateMessageDto);
             StringContent stringContent = new StringContent(jsonData, Encoding.UTF8, "application/json");
-            var responseMessage = await client.PutAsync("https://localhost:7208/api/Messages", stringContent);
+            var responseMessage = await client.PutAsync("https://localhost:44338/api/Messages", stringContent);
             if (responseMessage.IsSuccessStatusCode)
             {
                 return RedirectToAction("MessageList");
@@ -89,7 +89,7 @@ namespace ApiProjectCamp.WebUI.Controllers
         public async Task<IActionResult> AnswerMessageWithOpenAI(int id)
         {
             HttpClient client = _httpClientFactory.CreateClient();
-            HttpResponseMessage responseMessage = await client.GetAsync("https://localhost:7208/api/Messages/GetMessage?id=" + id);
+            HttpResponseMessage responseMessage = await client.GetAsync("https://localhost:44338/api/Messages/GetMessage?id=" + id);
             if (responseMessage.IsSuccessStatusCode)
             {
                 var jsonData = await responseMessage.Content.ReadAsStringAsync();
@@ -200,7 +200,7 @@ namespace ApiProjectCamp.WebUI.Controllers
             HttpClient client = _httpClientFactory.CreateClient();
             var jsonData = JsonConvert.SerializeObject(createMessageDto);
             StringContent stringContent = new StringContent(jsonData, Encoding.UTF8, "application/json");
-            var responseMessage = await client.PostAsync("https://localhost:7208/api/Messages", stringContent);
+            var responseMessage = await client.PostAsync("https://localhost:44338/api/Messages", stringContent);
             if (responseMessage.IsSuccessStatusCode)
             {
                 TempData["Success"] = "Mesajınız başarıyla gönderildi. Teşekkür ederiz 😊";

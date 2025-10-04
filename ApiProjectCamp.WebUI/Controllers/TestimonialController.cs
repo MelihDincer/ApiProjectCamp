@@ -17,7 +17,7 @@ namespace ApiProjectCamp.WebUI.Controllers
         public async Task<IActionResult> TestimonialList()
         {
             HttpClient client = _httpClientFactory.CreateClient();
-            HttpResponseMessage responseMessage = await client.GetAsync("https://localhost:7208/api/Testimonials");
+            HttpResponseMessage responseMessage = await client.GetAsync("https://localhost:44338/api/Testimonials");
             if (responseMessage.IsSuccessStatusCode)
             {
                 var jsonData = await responseMessage.Content.ReadAsStringAsync();
@@ -39,7 +39,7 @@ namespace ApiProjectCamp.WebUI.Controllers
             HttpClient client = _httpClientFactory.CreateClient();
             var jsonData = JsonConvert.SerializeObject(createTestimonialDto);
             StringContent stringContent = new StringContent(jsonData, Encoding.UTF8, "application/json");
-            var responseMessage = await client.PostAsync("https://localhost:7208/api/Testimonials", stringContent);
+            var responseMessage = await client.PostAsync("https://localhost:44338/api/Testimonials", stringContent);
             if (responseMessage.IsSuccessStatusCode)
             {
                 return RedirectToAction("TestimonialList");
@@ -50,7 +50,7 @@ namespace ApiProjectCamp.WebUI.Controllers
         public async Task<IActionResult> DeleteTestimonial(int id)
         {
             HttpClient client = _httpClientFactory.CreateClient();
-            await client.DeleteAsync("https://localhost:7208/api/Testimonials?id=" + id);
+            await client.DeleteAsync("https://localhost:44338/api/Testimonials?id=" + id);
             return RedirectToAction("TestimonialList");
         }
 
@@ -58,7 +58,7 @@ namespace ApiProjectCamp.WebUI.Controllers
         public async Task<IActionResult> UpdateTestimonial(int id)
         {
             HttpClient client = _httpClientFactory.CreateClient();
-            HttpResponseMessage responseMessage = await client.GetAsync("https://localhost:7208/api/Testimonials/GetTestimonial?id=" + id);
+            HttpResponseMessage responseMessage = await client.GetAsync("https://localhost:44338/api/Testimonials/GetTestimonial?id=" + id);
             if (responseMessage.IsSuccessStatusCode)
             {
                 var jsonData = await responseMessage.Content.ReadAsStringAsync();
@@ -74,7 +74,7 @@ namespace ApiProjectCamp.WebUI.Controllers
             HttpClient client = _httpClientFactory.CreateClient();
             var jsonData = JsonConvert.SerializeObject(updateTestimonialDto);
             StringContent stringContent = new StringContent(jsonData, Encoding.UTF8, "application/json");
-            var responseMessage = await client.PutAsync("https://localhost:7208/api/Testimonials", stringContent);
+            var responseMessage = await client.PutAsync("https://localhost:44338/api/Testimonials", stringContent);
             if (responseMessage.IsSuccessStatusCode)
             {
                 return RedirectToAction("TestimonialList");

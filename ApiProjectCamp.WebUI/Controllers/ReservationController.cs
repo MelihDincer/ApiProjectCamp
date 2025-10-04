@@ -17,7 +17,7 @@ namespace ApiProjectCamp.WebUI.Controllers
         public async Task<IActionResult> ReservationList()
         {
             HttpClient client = _httpClientFactory.CreateClient();
-            HttpResponseMessage responseMessage = await client.GetAsync("https://localhost:7208/api/Reservations");
+            HttpResponseMessage responseMessage = await client.GetAsync("https://localhost:44338/api/Reservations");
             if (responseMessage.IsSuccessStatusCode)
             {
                 var jsonData = await responseMessage.Content.ReadAsStringAsync();
@@ -39,7 +39,7 @@ namespace ApiProjectCamp.WebUI.Controllers
             HttpClient client = _httpClientFactory.CreateClient();
             var jsonData = JsonConvert.SerializeObject(createReservationDto);
             StringContent stringContent = new StringContent(jsonData, Encoding.UTF8, "application/json");
-            var responseMessage = await client.PostAsync("https://localhost:7208/api/Reservations", stringContent);
+            var responseMessage = await client.PostAsync("https://localhost:44338/api/Reservations", stringContent);
             if (responseMessage.IsSuccessStatusCode)
             {
                 return RedirectToAction("ReservationList");
@@ -50,7 +50,7 @@ namespace ApiProjectCamp.WebUI.Controllers
         public async Task<IActionResult> DeleteReservation(int id)
         {
             HttpClient client = _httpClientFactory.CreateClient();
-            await client.DeleteAsync("https://localhost:7208/api/Reservations?id=" + id);
+            await client.DeleteAsync("https://localhost:44338/api/Reservations?id=" + id);
             return RedirectToAction("ReservationList");
         }
 
@@ -58,7 +58,7 @@ namespace ApiProjectCamp.WebUI.Controllers
         public async Task<IActionResult> UpdateReservation(int id)
         {
             HttpClient client = _httpClientFactory.CreateClient();
-            HttpResponseMessage responseMessage = await client.GetAsync("https://localhost:7208/api/Reservations/GetReservation?id=" + id);
+            HttpResponseMessage responseMessage = await client.GetAsync("https://localhost:44338/api/Reservations/GetReservation?id=" + id);
             if (responseMessage.IsSuccessStatusCode)
             {
                 var jsonData = await responseMessage.Content.ReadAsStringAsync();
@@ -74,7 +74,7 @@ namespace ApiProjectCamp.WebUI.Controllers
             HttpClient client = _httpClientFactory.CreateClient();
             var jsonData = JsonConvert.SerializeObject(updateReservationDto);
             StringContent stringContent = new StringContent(jsonData, Encoding.UTF8, "application/json");
-            var responseMessage = await client.PutAsync("https://localhost:7208/api/Reservations", stringContent);
+            var responseMessage = await client.PutAsync("https://localhost:44338/api/Reservations", stringContent);
             if (responseMessage.IsSuccessStatusCode)
             {
                 return RedirectToAction("ReservationList");

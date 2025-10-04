@@ -16,7 +16,7 @@ namespace ApiProjectCamp.WebUI.Controllers
         public async Task<IActionResult> ImageList()
         {
             HttpClient client = _httpClientFactory.CreateClient();
-            HttpResponseMessage responseMessage = await client.GetAsync("https://localhost:7208/api/Images");
+            HttpResponseMessage responseMessage = await client.GetAsync("https://localhost:44338/api/Images");
             if (responseMessage.IsSuccessStatusCode)
             {
                 var jsonData = await responseMessage.Content.ReadAsStringAsync();
