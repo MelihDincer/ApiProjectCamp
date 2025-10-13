@@ -19,6 +19,7 @@
 
   <ItemGroup>
     <Folder Include="Dtos\NewFolder\" />
+    <Folder Include="wwwroot\images\products\" />
   </ItemGroup>
 
 </Project>
