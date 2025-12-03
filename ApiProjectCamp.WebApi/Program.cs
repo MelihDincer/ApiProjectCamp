@@ -10,7 +10,6 @@ var builder = WebApplication.CreateBuilder(args);
 
 // Add services to the container.
 builder.Services.AddDbContext<ApiContext>();
-builder.Services.AddDbContext<PostgreApiContext>(options => options.UseNpgsql(builder.Configuration.GetConnectionString("PostgreSQLConnection")));
 builder.Services.AddAutoMapper(Assembly.GetExecutingAssembly());
 builder.Services.AddScoped<IValidator<Product>, ProductValidator>();
 builder.Services.AddScoped<IValidator<Service>, ServiceValidator>();
